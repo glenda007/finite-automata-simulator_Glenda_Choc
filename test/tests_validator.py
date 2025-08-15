@@ -1,6 +1,7 @@
 import unittest
 from src.validator import AutomatonValidator
 
+# Clase para las pruebas del validador
 class TestValidator(unittest.TestCase):
     def setUp(self):
         self.valid_automaton = {
@@ -18,10 +19,12 @@ class TestValidator(unittest.TestCase):
             ]
         }
 
-    def test_validator_autonomo(self):
+    # Prueba de validación del autómata
+    def test_validator_automaton(self):
         errors = AutomatonValidator.validate(self.valid_automaton)
         self.assertEqual(errors, [])
 
+    # Prueba de estado inicial faltante
     def test_missing_initial_state(self):
         invalid_automaton = self.valid_automaton.copy()
         invalid_automaton['initial_state'] = 'q3'

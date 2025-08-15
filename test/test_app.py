@@ -3,11 +3,13 @@ from src.app import app
 import json 
 import os
 
+# Clase para las pruebas de la aplicación
 class TestApp(unittest.TestCase):
     def setUp(self):
         self.app = app.test_client()
         self.app.testing = True 
 
+        # Crear un archivo de prueba para el autómata
         self.test_file = 'test_automaton.json'
         with open(self.test_file, 'w') as f:
             json.dump([{
@@ -26,10 +28,12 @@ class TestApp(unittest.TestCase):
                 "test_strings": ["0", "10"]
             }], f)
 
+    # Función para limpiar después de las pruebas
     def tearDown(self):
         if os.path.exists(self.test_file):
             os.remove(self.test_file)
 
+    # Prueba de procesamiento del autómata
     def test_processing_automaton(self):
         with open(self.test_file, 'rb') as f:
             response = self.app.post(
@@ -38,6 +42,7 @@ class TestApp(unittest.TestCase):
                 content_type = 'multipart/form-data'
             )
 
+        # Verificar la respuesta
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.data)
         self.assertTrue(isinstance(data, list))

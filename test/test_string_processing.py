@@ -2,6 +2,7 @@ import unittest
 from src.string_processing import StringProcessing
 from src.automaton import Automaton
 
+# Clase para las pruebas del procesamiento de cadenas
 class TestStringProcessing(unittest.TestCase):
     def setUp(self):
         self.even_zeros_automaton = Automaton (
@@ -19,6 +20,7 @@ class TestStringProcessing(unittest.TestCase):
             ]
         ) 
 
+    # Prueba de procesamiento de cadenas
     def test_string_processing(self):
         self.assertTrue(StringProcessing.process_string(self.even_zeros_automaton, "1001"))
         self.assertFalse(StringProcessing.process_string(self.even_zeros_automaton, "100"))

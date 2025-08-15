@@ -3,6 +3,7 @@ import os
 from src.diagram_generator import DiagramGenerator
 from src.automaton import Automaton
 
+# Clase para las pruebas del generador de diagramas
 class TestDiagram(unittest.TestCase):
     def test_diagram_generator(self):
         sample_automaton = {
@@ -19,9 +20,11 @@ class TestDiagram(unittest.TestCase):
                 {'from_state': 'q1', 'symbol': '1', 'to_state': 'q1'}
             ]
         }
-        
+
+        # Crear una instancia del autómata
         automaton = Automaton(**sample_automaton)
         path = DiagramGenerator.generate_diagram(automaton)
 
+        # Verificar que se haya creado el archivo
         self.assertTrue(os.path.exists(path))
         os.remove(path)
